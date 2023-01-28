@@ -11,7 +11,7 @@ import {
 } from "@icon-park/vue-next";
 import { useRoute, useRouter } from "vue-router";
 
-interface Imenu {
+export interface Imenu {
   name: string;
   key: string;
   icon: any;
@@ -36,13 +36,13 @@ export const useMenu = () => {
         },
         {
           name: "音乐馆",
-          key: "Music",
+          key: "music",
           icon: Music,
           theme: "outline",
         },
         {
           name: "视频",
-          key: "Video",
+          key: "video",
           icon: VideoOne,
           theme: "outline",
         },

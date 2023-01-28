@@ -1,35 +1,78 @@
 <template>
-  <div :class="$style['menu-item']" class="hover-bg">
-    <IconPark icon="" />
+  <div :class="[
+    $style['hover-bg'],
+    $style['menu-item'],
+    menu?.key === currentKey ? $style['active'] : '',
+  ]" @click="gotoPage(menu)">
+    <IconPark :icon="menu?.icon" size="18" :theme="menu?.theme" />
+    <span :class="$style['menu-des']">{{ menu?.name }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, toRefs, watch, computed, getCurrentInstance } from 'vue'
-import IconPark from '@/components/common/IconPark.vue'
-
+import type { Imenu } from "./useMenu";
+import {
+  defineComponent,
+  ref,
+  reactive,
+  toRefs,
+  watch,
+  computed,
+  getCurrentInstance,
+  type PropType,
+} from "vue";
+import IconPark from "@/components/common/IconPark.vue";
+import { useMenu } from "./useMenu";
 export default defineComponent({
-  name: 'MenuItem',
+  name: "MenuItem",
   components: {
-    IconPark
-  }
-  setup() { },
-})
+    IconPark,
+  },
+  props: {
+    menu: {
+      type: Object as PropType<Imenu>,
+      require: true,
+      default: () => { },
+    },
+  },
+  setup() {
+    const { currentKey, gotoPage } = useMenu();
+    return {
+      currentKey,
+      gotoPage,
+    };
+  },
+});
 </script>
 
 <style lang="less" module>
 .menu-item {
-  background: #f9fafb;
-  width: 100%;
-  height: 1.4rem;
-  border-radius: 5px;
+  background-color: inherit;
+  border-radius: 0.25rem;
   display: flex;
   cursor: pointer;
-  justify-content: flex-start;
   align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.15s;
+
+  .menu-des {
+    margin-left: 0.25rem;
+  }
 }
 
-.hover-bg:hover {
-  background-color: rgba(229, 231, 235, 1);
+.hover-bg {
+  &:hover {
+    background-color: rgba(229, 231, 235, 1);
+  }
+}
+
+.active {
+  background-image: linear-gradient(to right, #2dd4bf, #34d399);
+  color: rgb(248, 250, 252);
 }
 </style>
