@@ -4,11 +4,11 @@ axios.defaults.baseURL = 'http://127.0.0.1:3000'
 axios.defaults.timeout = 20 * 1000
 axios.defaults.maxBodyLength = 5 * 1024 * 1024
 axios.defaults.withCredentials = true
-
+const http = axios.create()
 /**
  * 请求拦截
  */
-axios.interceptors.request.use(
+http.interceptors.request.use(
 	(config: AxiosRequestConfig | any) => {
 		config.params = {
 			...config.params,
@@ -24,7 +24,7 @@ axios.interceptors.request.use(
 /**
  * 响应拦截
  */
-axios.interceptors.response.use(
+http.interceptors.response.use(
 	response => {
 		return response
 	},
@@ -33,5 +33,4 @@ axios.interceptors.response.use(
 	}
 )
 
-const http = axios.create()
 export default http
