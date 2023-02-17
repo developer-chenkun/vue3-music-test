@@ -33,9 +33,7 @@ const props = withDefaults(defineProps<propsType>(), {
 })
 console.log(props)
 
-let { playObj, playMusic } = usePlayMusic()
-
-const { isPlaying } = playObj
+const { playMusic } = usePlayMusic()
 
 const play = () => {
 	console.log('play')

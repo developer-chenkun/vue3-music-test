@@ -24,7 +24,6 @@ import MenuView from './menu/Menu.vue'
 import MusicHeader from './header/index.vue'
 import MusicFooter from './footer/index.vue'
 import MusicPlayer from '@/components/common/MusicPlayer.vue'
-import { RouterView } from 'vue-router'
 export default defineComponent({
 	name: 'RootView',
 	components: {
