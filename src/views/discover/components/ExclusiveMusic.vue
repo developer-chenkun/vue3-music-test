@@ -4,7 +4,13 @@
 		<div class="music-wrap">
 			<div class="music-item" v-for="item in musicData" :key="item.id">
 				<div class="music-img">
-					<cover-play :img-src="item.picUrl" :play-count="item.playCount" />
+					<cover-play
+						:img-src="item.picUrl"
+						:play-count="item.playCount"
+						:id="item.id"
+						:name="item.name"
+						type="music"
+					/>
 				</div>
 				<div class="music-des">{{ item.name }}</div>
 			</div>

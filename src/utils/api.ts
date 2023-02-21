@@ -50,3 +50,20 @@ export function getSongs(params: { limit: number }) {
 export function getMusicUrl(params: { id: number; level: 'standard' | 'higher' | 'exhigh' | 'lossless' | 'hires' }) {
 	return http.get('/song/url/v1', { params })
 }
+
+/**
+ * 热门歌曲集合
+ * @returns
+ */
+export function getHotMusic() {
+	return http.get('/search/hot/detail')
+}
+
+/**
+ * 获取歌单详情
+ * @param id 歌单id
+ * @returns
+ */
+export function fetchMusicListDetail(id: number) {
+	return http.get('/playlist/detail', { params: { id } })
+}

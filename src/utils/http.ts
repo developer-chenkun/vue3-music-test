@@ -12,7 +12,7 @@ http.interceptors.request.use(
 	(config: AxiosRequestConfig | any) => {
 		config.params = {
 			...config.params,
-			t: new Date(),
+			// t: new Date(),
 		}
 		return config
 	},

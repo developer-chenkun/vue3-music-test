@@ -4,7 +4,14 @@
 		<div class="mv-wrap">
 			<div v-for="item in mvData" :key="item.id" class="mv-item">
 				<div class="mv-image">
-					<cover-play :img-src="item.picUrl" :play-count="item.playCount" :name="item.name" :author="item.artistName" />
+					<cover-play
+						:img-src="item.picUrl"
+						:play-count="item.playCount"
+						:name="item.name"
+						:author="item.artistName"
+						:id="item.id"
+						type="mv"
+					/>
 				</div>
 				<div class="mv-des">
 					<div class="mv-des-item">{{ item.name }}</div>

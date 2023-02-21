@@ -2,7 +2,7 @@
 	<div class="cover-play">
 		<el-image fit="fill" :src="imgSrc"></el-image>
 		<div class="mask">
-			<icon-park :icon="PlayOne" :size="40" theme="filled" @click="play"></icon-park>
+			<icon-park :icon="PlayOne" :size="40" theme="filled" @click="toPlayList"></icon-park>
 		</div>
 		<div class="play-count">
 			<IconPark :icon="Headset" :size="12" />
@@ -19,26 +19,36 @@ import IconPark from '@/components/common/IconPark.vue'
 import { PlayOne, Headset } from '@icon-park/vue-next'
 import { useNumberFormat } from '@/utils/utils'
 import { usePlayMusic } from '@/stores/playMusic'
+import { useRouter } from 'vue-router'
 type propsType = {
 	imgSrc: string
 	playCount: number
 	name: string
-	author: string
+	author?: string
+	id: number
+	type: string
 }
 const props = withDefaults(defineProps<propsType>(), {
 	imgSrc: '',
 	playCount: 0,
 	name: '',
 	author: '',
+	id: 0,
+	type: 'music',
 })
 console.log(props)
+const router = useRouter()
+const toPlayList = () => {
+	console.log(router)
 
-const { playMusic } = usePlayMusic()
-
-const play = () => {
-	console.log('play')
-
-	playMusic({ imgSrc: props.imgSrc, name: props.name, author: props.author })
+	if (props.type === 'music') {
+		router.push({
+			name: 'playlist',
+			params: {
+				id: props.id,
+			},
+		})
+	}
 }
 </script>
 

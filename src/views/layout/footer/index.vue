@@ -3,7 +3,9 @@
 		<div class="footer-item footer-left">
 			<musicView />
 		</div>
-		<div class="footer-item footer-center"></div>
+		<div class="footer-item footer-center">
+			<musicControll />
+		</div>
 		<div class="footer-item footer-right"></div>
 	</div>
 </template>
@@ -11,6 +13,7 @@
 <script lang="ts" setup>
 import { ref, reactive, toRefs, watch, computed } from 'vue'
 import musicView from './musicView.vue'
+import musicControll from './musciControll.vue'
 </script>
 
 <style lang="less" scoped>
